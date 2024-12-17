@@ -8,14 +8,17 @@ export function initSlider(
   sliderID,
   breakPoint = null,
   autoSwap = false,
-  infinite = true
+  infinite = true,
+  counterType = "digits"
 ) {
   const slider = document.querySelector(`#${sliderID}`);
   const [slidesWrapper, controls] = slider.children;
   const slidesCount = slidesWrapper.childElementCount;
   const slides = [...slidesWrapper.children];
   const [prevButton, sliderCounter, nextButton] = controls.children;
-  const [counterCurrent, t, counterSum] = sliderCounter.children;
+
+  const [counterCurrent] = sliderCounter.children;
+
   let visibleSlidesArray = [],
     SLIDES_VISIBLE = 1,
     CURRENT_VISIBLE_SLICE = [],
@@ -23,7 +26,6 @@ export function initSlider(
     END_ARRAY = [slides.length - 1];
 
   function init() {
-    counterSum.innerHTML = `${slidesCount}`;
     visibleSlidesArray = START_ARRAY;
     prevButton.addEventListener("click", () => {
       if (visibleSlidesArray[0] - SLIDES_VISIBLE < 0) {
@@ -78,7 +80,8 @@ export function initSlider(
       slide.classList.add(ACTIVE_SLIDE);
     });
     CURRENT_VISIBLE_SLICE = newVisibleSlice;
-    counterCurrent.innerHTML = visibleSlidesArray[0] + SLIDES_VISIBLE;
+
+    updateCounterHandler(counterType);
 
     if (!infinite) {
       if (
@@ -95,6 +98,25 @@ export function initSlider(
       } else {
         prevButton.disabled = false;
       }
+    }
+  }
+
+  function updateCounterHandler(counterType) {
+    switch (counterType) {
+      case "digits":
+        counterCurrent.innerHTML = visibleSlidesArray[0] + SLIDES_VISIBLE;
+        break;
+      case "dots":
+        [...counterCurrent.children].forEach((button, index) => {
+          if (index === visibleSlidesArray[0]) {
+            button.classList.add("active");
+          } else {
+            button.classList.remove("active");
+          }
+        });
+        break;
+      default:
+        break;
     }
   }
   function nextSlideHandler() {

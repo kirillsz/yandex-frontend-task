@@ -13,6 +13,11 @@
   </head>
   <body>
     <section id="entry">
+      <picture>
+        <source media="(85em)" srcset="" />
+        <source media="(min-width:45em )" srcset="./img/entry-img-xm.png" />
+        <img class="entry__img" src="./img/entry-img-2x.png" alt="" />
+      </picture>
       <div class="container">
         <div class="entry_wrapper">
           <header>
@@ -273,9 +278,13 @@
             <div class="controls">
               <button class="slider-button button-prev" type="button"></button>
               <div class="counter">
-                <span class="counter__current">0</span>
-                <span class="text-color-neutral-400">/</span>
-                <span class="counter__max text-color-neutral-400">0</span>
+                <div class="counter__dots">
+                  <button class="controls__dot active"></button>
+                  <button class="controls__dot"></button>
+                  <button class="controls__dot"></button>
+                  <button class="controls__dot"></button>
+                  <button class="controls__dot"></button>
+                </div>
               </div>
               <button class="slider-button button-next" type="button"></button>
             </div>
@@ -439,7 +448,7 @@
             <div class="counter">
               <span class="counter__current">0</span>
               <span class="text-color-neutral-400">/</span>
-              <span class="counter__max text-color-neutral-400">0</span>
+              <span class="counter__max text-color-neutral-400">6</span>
             </div>
 
             <button class="slider-button button-next" type="button"></button>
@@ -488,6 +497,6 @@
         </p>
       </div>
     </footer>
-    <script type="module" src="/scripts/app.js"></script>
+    <script type="module" src="./scripts/app.js"></script>
   </body>
 </html>

@@ -178,7 +178,7 @@ picture {
   background-size: contain;
   padding-top: 20px;
   padding-bottom: 291px;
-  background-image: url("../img/entry-bg-mobile-2x.png"),
+  background-image: url("../img/entry-bg.png"),
     url("../img/Cooper\ Union\ Stamp\ Paper.png");
   background-size: cover;
   background-blend-mode: color-burn;
@@ -186,11 +186,8 @@ picture {
   @media only screen and (min-width: 65em) {
     padding-top: 28px;
     padding-bottom: 130px;
-    background-image: url("../img/entry-city-desktop.png"),
-      url("../img/Cooper\ Union\ Stamp\ Paper.png");
-
-    background-size: cover;
   }
+  z-index: 1;
 }
 .bg-city {
   position: absolute;
@@ -200,6 +197,19 @@ picture {
 .entry_wrapper {
   @media only screen and (min-width: 65em) {
     max-width: 542px;
+  }
+}
+.entry__img {
+  position: absolute;
+  z-index: -1;
+  bottom: -1.5rem;
+  @media only screen and (min-width: 55em) {
+    max-width: 100%;
+
+    bottom: -3rem;
+  }
+  @media only screen and (min-width: 105em) {
+    right: 0;
   }
 }
 .entry_header {
@@ -260,7 +270,8 @@ picture {
   border-radius: 66px;
   transition: var(--btns-animation);
 }
-.btns--empty:hover {
+.btns--empty:hover,
+.btns--empty:focus {
   color: var(--color-neutral-900);
 }
 .btns--nav {
@@ -281,7 +292,8 @@ picture {
 
 @media (hover: hover) {
 }
-#btns--about:hover {
+#btns--about:hover,
+#btns--about:focus {
   background: var(--color-neutral-100);
   color: var(--color-neutral-900);
 }
@@ -290,11 +302,14 @@ picture {
   color: var(--color-neutral-900);
   background: #1f1f1f;
 }
-#btns--support:hover {
+#btns--support:hover,
+#btns--support:focus {
   background: var(--btn-color-hover-default);
   color: var(--color-neutral-100);
 }
 .marquee {
+  position: relative;
+  z-index: 2;
   --gap: 24px;
   color: var(--color-neutral-900);
   background-color: var(--color-accent-main);
@@ -574,7 +589,8 @@ picture {
   color: var(--btn-color-default);
   padding: 6px 12px;
 }
-.btns--participants:hover {
+.btns--participants:hover,
+.btns--participants:focus {
   background: var(--btn-color-default);
   border-color: transparent;
 }
@@ -640,7 +656,8 @@ picture {
   user-select: none;
   background-color: var(--body-text-color-default);
 }
-.slider-button:hover {
+.slider-button:hover,
+.slider-button:focus {
   background-color: var(--btn-color-hover-default);
 }
 
@@ -678,6 +695,16 @@ picture {
   align-items: center;
   justify-content: center;
   gap: 14px;
+}
+.controls__dot {
+  background-color: #d9d9d9;
+  aspect-ratio: 1;
+  width: 10px;
+  border: none;
+  border-radius: 50%;
+}
+.controls__dot.active {
+  background-color: var(--body-text-color-default);
 }
 
 .counter {
